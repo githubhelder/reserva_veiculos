@@ -1,0 +1,144 @@
+{
+    "openapi":"3.0.0",
+    "info":{
+        "title": "Mergulho no inconsciente",
+        "description": "Tradução da metodologia Jung.",
+        "version": "1.0.0",
+        "contact": {
+            "email": "xhelder@gmail.com"
+        }
+    } ,
+    "paths": {
+        "/categories":{
+            "post":{
+               "tags": ["Category"],
+               "summary": "Criar nova categoria",
+               "description": "Cria uma nova categoria de veículos",
+               "requestBody":{
+                   "content": {
+                       "application/json": {
+                           "schema": {
+                               "type": "object",
+                               "properties": {
+                                   "name": {
+                                       "type": "string"
+                                   },
+                                   "description": {
+                                       "type": "string"
+                                   }
+                               },
+                               "example":{
+                                   "name": "SUV", 
+                                   "description": "Utilitário esportivo"
+                               }
+                           }
+                       }
+                   }
+               },
+               "responses":{
+                   "201": {
+                       "description": "Created"
+                   },
+                   "500":{
+                       "description": "A categoria já existe."
+                   }
+               } 
+            },
+            "get":{
+                "tags":["Category"],
+                "summary": "Lista de categorias",
+                "description": "Lista todas as categorias",
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema":{
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                         "properties":{
+                                             "name":{
+                                                "type": "string"
+                                             },
+                                             "description":{
+                                                 "type":"string"
+                                             }
+                                         }
+                                    }
+                                
+                                }
+                            }
+                        
+                        }
+                    } 
+                }
+
+            }
+        },
+        "/categories/import": {
+            "post": {
+                "tags": ["Category"],
+                "summary": "Up load de categorias.",
+                "description": "Up load de arquivo csv com categorias de carros.",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties":{
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created."
+                    }
+                }
+            }
+        },
+        "/specifications": {
+            "post": {
+                "tags": ["Specifications"],
+                "summary": "Cria nova especificação.",
+                "description": "Cria uma nova especificação para um carro.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                              "$ref": "#/definitions/Specification"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "500": {
+                        "description": "A classificação já existe."
+                    }
+                }
+             }
+        }
+      },
+      "definitions": {
+        "Specification": {
+            "type": "object",
+             "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
