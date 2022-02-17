@@ -3,8 +3,9 @@ import "express-async-errors";
 import express, {Response, Request, NextFunction} from 'express';
 import swaggerUi from 'swagger-ui-express';
 
-
-import "@shared/infra/typeorm";
+//foi desabilitado porque temos que criar a conexão. 
+//import "@shared/infra/typeorm";
+import  createConnection  from "@shared/infra/typeorm";
 
 import "@shared/container";
 import { AppError } from "@shared/errors/AppError";
@@ -13,6 +14,8 @@ import { router } from '@shared/infra/http/routes';
 import swaggerFile from '../../../swagger.json';
 
 
+//criação da conexão com typeorm
+createConnection();
 const app = express();
 
 app.use(express.json());

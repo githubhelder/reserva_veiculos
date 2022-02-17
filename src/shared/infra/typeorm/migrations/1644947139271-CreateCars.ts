@@ -28,7 +28,7 @@ export class CreateCars1644947139271 implements MigrationInterface {
                     {
                         name: "available",
                         type: "boolean",
-                        default: true
+                        default: "true"
                     },
                     {
                         name: "license_plate",

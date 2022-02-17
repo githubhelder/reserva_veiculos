@@ -13,7 +13,7 @@ describe("Criar um carro", () => {
     })
 
     it("Should be able to create a new car", async () => {
-        await createCarUseCase.execute({
+        const car = await createCarUseCase.execute({
             name: "Sandero",
             description: "Sandero LTZ",
             daily_rate: 100,
@@ -22,6 +22,8 @@ describe("Criar um carro", () => {
             brand: "Renault",
             category_id: "Category"
         });
+
+        expect(car).toHaveProperty("id");
     });
 
     it("Should not be able to create a car with exits license plate ", () =>{
@@ -47,4 +49,21 @@ describe("Criar um carro", () => {
             });
         }).rejects.toBeInstanceOf(AppError); 
     });
+
+    it("Should not be able to create a car with available true by default ", async () =>{
+        const car =  await createCarUseCase.execute({
+            name: "Car Available",
+            description: "Car Available",
+            daily_rate: 100,
+            license_plate: "hmo available",
+            fine_amount: 60,
+            brand: "Renault",
+            category_id: "Category"
+        });
+
+        console.log(car);
+        expect(car.available).toBe(true);
+
+    });
+
 }); 

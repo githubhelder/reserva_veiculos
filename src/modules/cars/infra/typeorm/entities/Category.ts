@@ -1,10 +1,12 @@
 import { v4 as uuidV4 } from "uuid";
-import {Column, CreateDateColumn, Entity, PrimaryColumn} from "typeorm";
+import {Column, CreateDateColumn, Entity, PrimaryColumn, PrimaryGeneratedColumn} from "typeorm";
 
-@Entity("Categories")
+@Entity("categories")
 class Category{
     @PrimaryColumn()
-    id?: string;
+    //id?: string;
+    //@PrimaryGeneratedColumn("uuid")
+    id: string;
 
     @Column()
     name: string;
@@ -16,10 +18,12 @@ class Category{
     created_at: Date;
 
     constructor(){
+       
         if(!this.id){
             this.id= uuidV4();
             console.log("Acessou o método construtor",this.id);
         }
+        
     }
 
 }
