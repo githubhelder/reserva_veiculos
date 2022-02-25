@@ -1,6 +1,7 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn, SimpleConsoleLogger } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn, SimpleConsoleLogger } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 import { Category } from "./Category";
+import { Specification } from "./Specification";
 
 @Entity("cars")
 class Car {
@@ -21,7 +22,6 @@ class Car {
     @Column({default:true})
     available: boolean;
     
-
     @Column()
     license_plate: string;
 
@@ -35,8 +35,16 @@ class Car {
     @JoinColumn({ name: "category_id" })
     category: Category;
 
+    @ManyToMany( () => Specification)
+    @JoinTable( { 
+        name: "specifications_cars",
+        joinColumns: [{name:"car_id"}],
+        inverseJoinColumns: [{ name: "specifications_id"}]
+    } )
+    specifications: Specification[];
+
     @Column()
-    category_id?: string;
+    category_id: string;
 
     @CreateDateColumn()
     created_at: Date;
@@ -44,7 +52,7 @@ class Car {
     constructor(){
         if (!this.id){
             this.id= uuidV4();
-            console.log("gerou o id cars");
+            console.log("Gerou o id Cars",this.id);
         }
     }
 }

@@ -62,6 +62,7 @@ describe("Criar um carro", () => {
         });
 
         console.log(car);
+        console.log("Available",car.available);
         expect(car.available).toBe(true);
 
     });

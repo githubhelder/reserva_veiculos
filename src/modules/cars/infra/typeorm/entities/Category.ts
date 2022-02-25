@@ -21,7 +21,7 @@ class Category{
        
         if(!this.id){
             this.id= uuidV4();
-            console.log("Acessou o método construtor",this.id);
+            console.log("Gerou o id Categoria",this.id);
         }
         
     }

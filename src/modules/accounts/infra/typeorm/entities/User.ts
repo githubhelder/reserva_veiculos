@@ -33,7 +33,7 @@ class User {
         
         if (!this.id){
             this.id = uuidV4();
-            console.log("Gerou o id user");
+            console.log("Gerou o id Users",this.id);
         }
         
     }

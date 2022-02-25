@@ -21,6 +21,7 @@ class Specification {
         
         if(!this.id){
             this.id= uuidV4();
+            console.log("Gerou o id Specification",this.id);
         }
         
     }
