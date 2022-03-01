@@ -9,16 +9,12 @@ export class CreateUsers1643897556622 implements MigrationInterface {
                 columns: [
                     {
                         name: "id",
-                        type: "uuid"
+                        type: "uuid",
+                        isPrimary: true
                     },
                     {
                         name: "name",
                         type: "varchar"
-                    },
-                    {
-                        name: "username",
-                        type: "varchar",
-                        isUnique: true
                     },
                     {
                         name: "password",
@@ -36,6 +32,11 @@ export class CreateUsers1643897556622 implements MigrationInterface {
                         name: "isAdmin",
                         type: "boolean",
                         default: false
+                    },
+                    {
+                        name: "avatar",
+                        type: "varchar",
+                        isNullable: true
                     },
                     {
                         name: "created_at",
