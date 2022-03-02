@@ -10,7 +10,7 @@ async function create() {
     const connection = await createConnection("database");
 
     const id = uuidV4();
-    console.log(id);
+    //console.log(id);
     const password = await hash("HADM2022afm@", 8);
 
     await connection.query(`

@@ -40,3 +40,9 @@ values ('027d5158-af2f-45e6-a388-18c682054909','Carro admin', 'Carro do admin',1
 
 #ormconfig.json - antigo.
  "entities": ["./src/modules/**/entities/*.ts"],
+
+
+{
+    "email": "xhelder@gmail.com",
+    "password": "1234"
+}

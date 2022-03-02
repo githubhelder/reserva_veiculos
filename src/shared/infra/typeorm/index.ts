@@ -21,7 +21,11 @@ export default async(host= "database"): Promise<Connection> => {
     //ver em: docker-compose.yml (services: database)
     return createConnection(
         Object.assign(defaultOptions, {
-            host,
+            host: process.env.NODE_ENV === "test" ? "localhost" : host,
+            database: 
+                process.env.NODE_ENV === "test"
+                    ? "cars_test"
+                    : defaultOptions.database,
         })
     );
 }
