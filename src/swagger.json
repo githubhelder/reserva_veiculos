@@ -14,6 +14,11 @@
                "tags": ["Category"],
                "summary": "Criar nova categoria",
                "description": "Cria uma nova categoria de veículos",
+               "security": [
+                {
+                    "bearerAuth": [] 
+                }
+                ],
                "requestBody":{
                    "content": {
                        "application/json": {
@@ -108,6 +113,11 @@
                 "tags": ["Specifications"],
                 "summary": "Cria nova especificação.",
                 "description": "Cria uma nova especificação para um carro.",
+                "security": [
+                    {
+                        "bearerAuth": [] 
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -126,6 +136,115 @@
                     }
                 }
              }
+        },
+        "/sessions": {
+            "post": {
+                "tags": ["Users"],
+                "summary": "Authenticate user",
+                "description": "Authenticate user and generate an access token",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "example": "contato@heldermorais.com.br",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "example": "HADM2022afm@",
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Authenticated"
+                    },
+                    "400": {
+                        "description": "Email or password incorrect"
+                    }
+                }
+            }
+        },
+        "/cars": {
+            "post": {
+                "tags": ["Cars"],
+                "summary": "Creates a car",
+                "description": "Creates a new car entry on database",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Car"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Car already exists!"
+                    }
+                }
+            }
+        },
+        "/cars/images/{id}": {
+            "post": {
+                "tags": ["Cars"],
+                "summary": "Uploads images",
+                "description": "Uploads a collection of car images",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Car id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "images": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                }
+            }
         }
       },
       "definitions": {
@@ -138,6 +257,15 @@
                 "description": {
                     "type": "string"
                 }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
             }
         }
     }

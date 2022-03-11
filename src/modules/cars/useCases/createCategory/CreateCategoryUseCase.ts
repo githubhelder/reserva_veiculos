@@ -23,7 +23,7 @@ class CreateCategoryUseCase {
         const categoryAlreadExists = await this._iCategoriesRepository.findByName(name);
 
         if (categoryAlreadExists){
-            throw new AppError("Categoria já existe!");
+            throw new AppError("Category already exists!");
         }
 
         await this._iCategoriesRepository.create({name, description});

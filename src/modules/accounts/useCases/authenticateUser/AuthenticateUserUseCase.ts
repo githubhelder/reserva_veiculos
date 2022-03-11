@@ -31,7 +31,7 @@ class AuthenticateUserUseCase {
         const user = await this.usersRepository.findByEmail(email);
 
         if (!user) {
-            throw new AppError('Não existe um usuário cadastrado com este email.');
+            throw new AppError('Email or password incorrect!');
         }
 
         // verificar - senha está correta?
