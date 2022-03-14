@@ -16,8 +16,10 @@ drop table specifications_cars;
 drop table cars;
 drop table categories;
 drop table specifications;
+drop table users_tokens;
 drop table users;
 delete from migrations;
+
 
 
 insert into users 

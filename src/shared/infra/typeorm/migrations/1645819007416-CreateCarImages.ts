@@ -7,8 +7,8 @@ export class CreateCarImages1645819007416 implements MigrationInterface {
             new Table({
                 name: "cars_image",
                 columns: [
-                    {name: "id", type: "uuid", isPrimary: true},
-                    {name: "car_id", type: "uuid"},
+                    {name: "id", type: "UUID", isPrimary: true},
+                    {name: "car_id", type: "UUID"},
                     {name: "image_name", type: "varchar"},
                     {name: "created_at", type: "timestamp", default: "now()"}
                 ],

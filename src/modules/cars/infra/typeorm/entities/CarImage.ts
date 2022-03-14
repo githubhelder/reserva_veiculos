@@ -1,6 +1,7 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm"
 import { v4 as uuidV4 } from "uuid";
 
+//@Entity("cars_image", {synchronize:false})
 @Entity("cars_image")
 class CarImage {
 

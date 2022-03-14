@@ -1,6 +1,7 @@
 import { Column, CreateDateColumn, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
+//@Entity("specifications", {synchronize:false})
 @Entity("specifications")
 class Specification {
     @PrimaryColumn()

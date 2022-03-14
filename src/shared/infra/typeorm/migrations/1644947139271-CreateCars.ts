@@ -10,7 +10,7 @@ export class CreateCars1644947139271 implements MigrationInterface {
                 columns: [
                     {
                         name: "id",
-                        type: "uuid",
+                        type: "UUID",
                         isPrimary: true
                     },
                     {
@@ -44,7 +44,7 @@ export class CreateCars1644947139271 implements MigrationInterface {
                     },
                     {
                         name: "category_id",
-                        type: "uuid",
+                        type: "UUID",
                         isNullable: true
                     },
                     {
