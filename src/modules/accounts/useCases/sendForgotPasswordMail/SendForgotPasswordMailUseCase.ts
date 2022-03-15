@@ -11,7 +11,7 @@ import { IMailProvider } from '@shared/container/providers/MailProvider/IMailPro
 
 
 @injectable()
-class SendPasswordRecoveryMailUseCase {
+class SendForgotPasswordMailUseCase {
     constructor(
         @inject('UsersRepository')
         private usersRepository: IUsersRepository,
@@ -28,7 +28,7 @@ class SendPasswordRecoveryMailUseCase {
         const user = await this.usersRepository.findUserByEmail(email);
 
         if (!user) {
-            throw new AppError('User does not exist!');
+            throw new AppError('User does not exists!');
         }
 
         const token = uuidv4();
@@ -64,4 +64,4 @@ class SendPasswordRecoveryMailUseCase {
     }
 }
 
-export { SendPasswordRecoveryMailUseCase };
+export { SendForgotPasswordMailUseCase };

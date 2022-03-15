@@ -35,6 +35,8 @@ insert into cars (id, name,description, daily_rate, license_plate, fine_amount, 
 values ('027d5158-af2f-45e6-a388-18c682054909','Carro admin', 'Carro do admin',10,'HADM 1999',100,'Renault','ca575242-0c91-4eb8-954d-75f976484fc7');
 
 
+"test": "SET NODE_ENV=test&&jest --runInBand --detectOpenHandles"
+"test": "SET NODE_ENV=test&&jest --runInBand --detectOpenHandles",
 
 
 #criar usuário administrador
