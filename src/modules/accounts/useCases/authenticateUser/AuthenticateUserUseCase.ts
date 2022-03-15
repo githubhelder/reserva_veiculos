@@ -36,7 +36,7 @@ class AuthenticateUserUseCase {
     
     async execute( {email, password} : IRequest): Promise<IResponse>{
         // verificar - o usuário existe?
-        const user = await this.usersRepository.findByEmail(email);
+        const user = await this.usersRepository.findUserByEmail(email);
         const { expires_in_token, secret_refresh_token, secret_token, expires_in_refresh_token, refresh_token_expiration_time} = auth;
 
         if (!user) {

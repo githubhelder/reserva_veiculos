@@ -13,7 +13,7 @@ class CreateUserUseCase{
     
     async excute({name, password, email, driver_license}: ICreateUserDTO): Promise<void>{
 
-        const userAlreadExists = await this.usersRepository.findByEmail(email);
+        const userAlreadExists = await this.usersRepository.findUserByEmail(email);
 
         if (userAlreadExists){
             throw new AppError("Usuário já cadastrado");
